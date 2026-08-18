@@ -1,0 +1,312 @@
+create database hospitaldatabase;
+select datname from pg_database;
+create table department (
+dep_id int primary key,
+dep_name varchar(35)); 
+create table doctors (
+doc_id int primary key,
+doc_name varchar(50),
+dep_id int ,foreign key (dep_id) references department (dep_id),
+salary decimal(10,2));
+create table patients(
+pat_id int primary key,
+patient_name varchar(45),
+gender varchar(10),
+bloodgroup varchar(10),
+disease varchar(45));
+create table appointments(
+appointment_id int,
+doc_id int ,foreign key (doc_id) references doctors(doc_id),
+pat_id int ,foreign key (pat_id) references patients(pat_id),
+appointment_date date,
+status varchar(34));
+create table billing(
+bill_id int,
+pat_id int ,foreign key (pat_id) references patients (pat_id), 
+doc_id int ,foreign key (doc_id) references doctors (doc_id),
+bill_date date,
+amount decimal(10,2),
+paymentstatus varchar(40));
+INSERT INTO Department VALUES
+(1, 'Cardiology'),
+(2, 'Neurology'),
+(3, 'Orthopedics'),
+(4, 'Pediatrics'),
+(5, 'General Medicine'),
+(6, 'Oncology'),
+(7, 'Dermatology');
+INSERT INTO Doctors VALUES
+(1, 'Dr. Arun Kumar', 1, 180000),
+(2, 'Dr. Priya Sharma', 1, 160000),
+(3, 'Dr. Ravi Menon', 1, 140000),
+(4, 'Dr. Sneha Rao', 1, 130000),
+(5, 'Dr. Karthik Iyer', 1, 125000),
+(6, 'Dr. Ravi Menon', 1, 115000),
+(7, 'Dr. Anil Verma', 2, 190000),
+(8, 'Dr. Kavya Nair', 2, 175000),
+(9, 'Dr. Rajesh Singh', 2, 150000),
+(10, 'Dr. Divya Patel', 2, 135000),
+(11, 'Dr. Suresh Babu', 2, 120000),
+(12, 'Dr. Ravi Menon', 2, 110000),
+(13, 'Dr. Mohan Das', 3, 155000),
+(14, 'Dr. Asha Menon', 3, 145000),
+(15, 'Dr. Vijay Rao', 3, 130000),
+(16, 'Dr. Ravi Menon', 3, 95000),
+(17, 'Dr. Ramesh Kumar', 4, 90000),
+(18, 'Dr. Ravi Menon', 4, 85000),
+(19, 'Dr. Nitin Joshi', 4, 80000),
+(20, 'Dr. Sanjay Gupta', 5, 125000),
+(21, 'Dr. Rekha Nair', 5, 115000),
+(22, 'Dr. Ajay Rao', 5, 105000),
+(23, 'Dr. Manish Jain', 6, 200000),
+(24, 'Dr. Swati Kapoor', 6, 180000),
+(25, 'Dr. Deepak Singh', 7, 95000),
+(26, 'Dr. Tina George', 7, 85000);
+INSERT INTO Patients VALUES
+(1, 'Aarav', 'Male', 'O+', 'Diabetes'),
+(2, 'Aditya', 'Male', 'A+', 'Hypertension'),
+(3, 'Ananya', 'Female', 'B+', 'Asthma'),
+(4, 'Arjun', 'Male', 'O+', 'Diabetes'),
+(5, 'Bhavna', 'Female', 'A+', 'Cancer'),
+(6, 'Charan', 'Male', 'B+', 'Hypertension'),
+(7, 'Deepa', 'Female', 'O+', 'Migraine'),
+(8, 'Dev', 'Male', 'AB+', 'Diabetes'),
+(9, 'Divya', 'Female', 'A+', 'Asthma'),
+(10, 'Gaurav', 'Male', 'O+', 'Cancer'),
+(11, 'Harini', 'Female', 'B+', 'Diabetes'),
+(12, 'Ishaan', 'Male', 'O+', 'Hypertension'),
+(13, 'Jaya', 'Female', 'A+', 'Migraine'),
+(14, 'Karan', 'Male', 'B+', 'Diabetes'),
+(15, 'Kavya', 'Female', 'O+', 'Asthma'),
+(16, 'Krishna', 'Male', 'A+', 'Cancer'),
+(17, 'Lakshmi', 'Female', 'B+', 'Diabetes'),
+(18, 'Manoj', 'Male', 'O+', 'Hypertension'),
+(19, 'Meera', 'Female', 'A+', 'Migraine'),
+(20, 'Naveen', 'Male', 'B+', 'Diabetes'),
+(21, 'Neha', 'Female', 'O+', 'Asthma'),
+(22, 'Nikhil', 'Male', 'A+', 'Cancer'),
+(23, 'Pallavi', 'Female', 'B+', 'Diabetes'),
+(24, 'Prakash', 'Male', 'O+', 'Hypertension'),
+(25, 'Priya', 'Female', 'A+', 'Migraine'),
+(26, 'Rahul', 'Male', 'B+', 'Diabetes'),
+(27, 'Riya', 'Female', 'O+', 'Asthma'),
+(28, 'Rohan', 'Male', 'A+', 'Cancer'),
+(29, 'Sakshi', 'Female', 'B+', 'Diabetes'),
+(30, 'Sameer', 'Male', 'O+', 'Hypertension'),
+(31, 'Shalini', 'Female', 'A+', 'Migraine'),
+(32, 'Shankar', 'Male', 'B+', 'Diabetes'),
+(33, 'Shruti', 'Female', 'O+', 'Asthma'),
+(34, 'Siddharth', 'Male', 'A+', 'Cancer'),
+(35, 'Sneha', 'Female', 'B+', 'Diabetes'),
+(36, 'Surya', 'Male', 'O+', 'Hypertension'),
+(37, 'Swati', 'Female', 'A+', 'Migraine'),
+(38, 'Tarun', 'Male', 'B+', 'Diabetes'),
+(39, 'Uma', 'Female', 'O+', 'Asthma'),
+(40, 'Varun', 'Male', 'A+', 'Cancer'),
+(41, 'Vijay', 'Male', 'B+', 'Diabetes'),
+(42, 'Vikram', 'Male', 'O+', 'Hypertension'),
+(43, 'Vinay', 'Male', 'A+', 'Migraine'),
+(44, 'Yash', 'Male', 'B+', 'Diabetes'),
+(45, 'Zoya', 'Female', 'O+', 'Asthma');
+INSERT INTO Appointments VALUES
+(1,1,1,'2026-01-05','Completed'),
+(2,1,2,'2026-01-06','Completed'),
+(3,1,3,'2026-01-07','Completed'),
+(4,1,4,'2026-01-08','Completed'),
+(5,1,5,'2026-01-10','Completed'),
+(6,1,6,'2026-01-12','Completed'),
+(7,1,7,'2026-01-15','Completed'),
+(8,1,8,'2026-01-18','Completed'),
+(9,1,9,'2026-01-20','Completed'),
+(10,1,10,'2026-01-22','Completed'),
+(11,1,11,'2026-02-01','Completed'),
+(12,1,12,'2026-02-03','Completed'),
+(13,1,13,'2026-02-05','Completed'),
+(14,1,14,'2026-02-07','Completed'),
+(15,1,15,'2026-02-10','Completed'),
+(16,1,16,'2026-02-12','Completed'),
+(17,1,17,'2026-02-15','Completed'),
+(18,1,18,'2026-02-17','Completed'),
+(19,1,19,'2026-02-20','Completed'),
+(20,1,20,'2026-02-22','Completed'),
+(21,1,21,'2026-03-01','Completed'),
+(22,1,22,'2026-03-03','Completed'),
+(23,1,23,'2026-03-05','Completed'),
+(24,1,24,'2026-03-07','Completed'),
+(25,1,25,'2026-03-10','Scheduled'),
+(26,1,26,'2026-03-12','Scheduled'),
+(27,2,1,'2026-01-05','Completed'),
+(28,2,5,'2026-01-08','Completed'),
+(29,2,9,'2026-01-12','Completed'),
+(30,2,13,'2026-01-15','Completed'),
+(31,2,17,'2026-01-20','Completed'),
+(32,2,21,'2026-02-01','Completed'),
+(33,2,25,'2026-02-05','Completed'),
+(34,2,29,'2026-02-10','Completed'),
+(35,2,33,'2026-02-15','Completed'),
+(36,2,37,'2026-02-20','Completed'),
+(37,2,41,'2026-03-01','Completed'),
+(38,2,45,'2026-03-05','Scheduled'),
+(39,7,2,'2026-01-05','Completed'),
+(40,7,3,'2026-01-08','Completed'),
+(41,7,4,'2026-01-10','Completed'),
+(42,7,6,'2026-01-12','Completed'),
+(43,7,8,'2026-01-15','Completed'),
+(44,7,10,'2026-01-18','Completed'),
+(45,7,12,'2026-01-20','Completed'),
+(46,7,14,'2026-01-22','Completed'),
+(47,7,16,'2026-02-01','Completed'),
+(48,7,18,'2026-02-03','Completed'),
+(49,7,20,'2026-02-05','Completed'),
+(50,7,22,'2026-02-07','Completed'),
+(51,7,24,'2026-02-10','Completed'),
+(52,7,26,'2026-02-12','Completed'),
+(53,7,28,'2026-02-15','Completed'),
+(54,7,30,'2026-02-17','Completed'),
+(55,7,32,'2026-02-20','Completed'),
+(56,7,34,'2026-03-01','Completed'),
+(57,7,36,'2026-03-03','Completed'),
+(58,7,38,'2026-03-05','Completed'),
+(59,7,40,'2026-03-07','Completed'),
+(60,7,42,'2026-03-10','Completed'),
+(61,7,44,'2026-03-12','Scheduled'),
+(62,8,1,'2026-01-06','Completed'),
+(63,8,5,'2026-01-10','Completed'),
+(64,8,9,'2026-01-15','Completed'),
+(65,8,13,'2026-01-20','Completed'),
+(66,8,17,'2026-02-01','Completed'),
+(67,8,21,'2026-02-05','Completed'),
+(68,8,25,'2026-02-10','Completed'),
+(69,8,29,'2026-02-15','Completed'),
+(70,8,33,'2026-02-20','Completed'),
+(71,8,37,'2026-03-01','Completed'),
+(72,8,41,'2026-03-05','Completed'),
+(73,8,45,'2026-03-10','Completed');
+INSERT INTO Billing VALUES
+(1,1,1,'2026-01-05',60000,'Paid'),
+(2,2,1,'2026-01-06',55000,'Paid'),
+(3,3,1,'2026-01-07',70000,'Paid'),
+(4,4,1,'2026-01-08',45000,'Paid'),
+(5,5,1,'2026-01-10',90000,'Paid'),
+(6,6,1,'2026-01-12',65000,'Pending'),
+(7,7,1,'2026-01-15',55000,'Paid'),
+(8,8,1,'2026-01-18',80000,'Paid'),
+(9,9,1,'2026-01-20',50000,'Paid'),
+(10,10,1,'2026-01-22',95000,'Paid'),
+(11,11,2,'2026-02-01',60000,'Paid'),
+(12,12,2,'2026-02-03',75000,'Paid'),
+(13,13,2,'2026-02-05',55000,'Paid'),
+(14,14,2,'2026-02-07',65000,'Paid'),
+(15,15,2,'2026-02-10',80000,'Pending'),
+(16,16,2,'2026-02-12',90000,'Paid'),
+(17,17,7,'2026-01-20',50000,'Paid'),
+(18,18,7,'2026-01-22',70000,'Paid'),
+(19,19,7,'2026-02-01',55000,'Paid'),
+(20,20,7,'2026-02-05',85000,'Paid'),
+(21,21,7,'2026-02-10',65000,'Paid'),
+(22,22,7,'2026-02-15',90000,'Paid'),
+(23,23,7,'2026-02-20',75000,'Pending'),
+(24,24,7,'2026-03-01',80000,'Paid'),
+(25,25,8,'2026-03-01',55000,'Paid'),
+(26,26,8,'2026-03-05',65000,'Paid'),
+(27,27,8,'2026-03-07',70000,'Paid'),
+(28,28,8,'2026-03-10',85000,'Paid'),
+(29,29,8,'2026-03-12',60000,'Paid'),
+(30,30,8,'2026-03-15',75000,'Paid');
+create table medicine(
+medicine_id int,
+medicine_name varchar(40),
+price decimal(10,2));
+INSERT INTO medicine (medicine_id, medicine_name, price)
+VALUES
+(1, 'Paracetamol', 500.00),
+(2, 'Amoxicillin', 800.00),
+(3, 'Metformin', 600.00),
+(4, 'Aspirin', 400.00),
+(5, 'Atorvastatin', 1200.00),
+(6, 'Insulin', 2500.00),
+(7, 'Azithromycin', 900.00),
+(8, 'Omeprazole', 700.00),
+(9, 'Losartan', 650.00),
+(10, 'Cetirizine', 300.00),
+(1, 'Paracetamol', 500.00),
+(1, 'Paracetamol', 500.00),
+(1, 'Paracetamol', 500.00),
+(1, 'Paracetamol', 500.00),
+(1, 'Paracetamol', 500.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(2, 'Amoxicillin', 800.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00),
+(7, 'Azithromycin', 900.00);
+select * from department;
+select * from doctors;
+select * from patients;
+select * from appointments;
+select * from billing;
+select * from medicine;
+select dep_id,count(*) as doccount from doctors group by dep_id having count(*) > 5;
+select disease,count(*) as diseasecount from patients group by disease having count(*) >10;
+select bloodgroup,count(*) as patientcount from patients group by bloodgroup having count(*)>15;
+select doc_id,count(*) as patientcount from appointments group by doc_id having count(*)>10;
+select doc_id,count(*) as appointmentcount from appointments group by doc_id having count(*)>20;
+select dep_id,round (avg(salary)) as avgsalary from doctors group by dep_id having avg(salary) > 100000;   
+select dep_id,sum(salary) from doctors group by dep_id having sum(salary) > 1000000;
+select dep_id,max(salary) as highestsalary from doctors group by dep_id having max(salary) > 150000 order by max(salary) desc;
+select dep_id,min(salary) as lowsalary from doctors group by dep_id having min(salary) > 80000 order by min(salary);
+select medicine_id,medicine_name,sum(price) as totalsales from medicine group by medicine_id,medicine_name having sum(price) > 50000;
+select doc_id,pat_id,sum(pat_id) as uniquepatient from appointments group by doc_id,pat_id order by sum(pat_id)desc;
+select doc_id,count(distinct pat_id) as uniquepatient from appointments where status = 'Completed' group by doc_id having count(distinct pat_id) > 20;
+select doc_id,round (avg(amount)) as avgpatientbill from billing group by doc_id having avg(amount) > 65000;
+select disease,count(distinct patient_name) as patient from patients group by disease having count(distinct patient_name) > 5;
+select doc_id,count(*) as completedappointment from appointments where status = 'Completed' group by doc_id having count(*) > 20;
+select dep_id,count(*) as doccount, round (avg(salary)) from doctors group by dep_id having count(*) > 5 and avg(salary) > 100000; 
+select date_trunc('month',bill_date) as month ,sum(amount) as revenue from billing group by date_trunc('month',bill_date) having sum(amount) > 500000 order by month;
+select medicine_name,count(*) as medicinecount from medicine group by medicine_name having count(*) > 5;
+select doc_id,sum(amount) as totalbill from billing group by doc_id having sum(amount) > 500000;
+select count(patient_name) as patientcount from patients;
+select count(doc_name) as doctorcount from doctors;
+select sum(amount) as billingamount from billing;
+select round (avg(amount)) as averagebillingamount from billing;
+select pat_id,max(amount)as highestbill from billing group by pat_id order by max(amount) desc limit 1;
+select pat_id,min(amount)as lowestbill from billing group by pat_id order by min(amount) limit 1;
+select sum(price) as medicinesalaes from medicine;
+select doc_name,max(salary) as highestsalary from doctors group by doc_name order by max(salary)desc limit 1;
+select doc_name,min(salary) as lowestsalary from doctors group by doc_name order by min(salary) limit 1;
+select gender,count(pat_id)as patient from patients group by gender;
+select bloodgroup,count(pat_id) as patient from patients group by bloodgroup;
+select dep_id,count(doc_name) as doctorcount from doctors group by dep_id order by dep_id;
+select dep_id,avg(doc_name) as doctorcount from doctors group by dep_id order by dep_id;
+select dep_id,round (avg(salary)) as avgsalary from doctors group by dep_id order by dep_id;
+select dep_id,round (sum(salary)) as salary from doctors group by dep_id order by dep_id;
+select dep_id,round (max(salary)) as maxsalary from doctors group by dep_id order by dep_id;
+select dep_id,round (min(salary)) as minimumsalary from doctors group by dep_id order by dep_id;
+select paymentstatus,sum(amount) as revenue from billing group by paymentstatus;
+select status,count(appointment_date) as counts from appointments group by status;
+select disease,count(patient_name) as patientcount from patients group by disease;
+select dep_id,count(doc_name) as countdoctors from doctors group by dep_id having count(doc_name) > 5;
+select doc_id,count(pat_id) as countpatient from billing group by doc_id having count(pat_id) >5;
+select dep_id,round (avg(salary)) as avgsalary from doctors group by dep_id having avg(salary) > 100000;
+select doc_id,sum(amount) as totalbilling from billing group by doc_id having sum(amount) > 500000;
+select doc_id,count(pat_id) from appointments group by doc_id order by count(pat_id)desc limit 1;
+select disease,count(disease) as counts from patients group by disease order by count(disease)desc limit 1;
+select medicine_name,count(medicine_name) from medicine group by medicine_name order by count(medicine_name) desc limit 1;
+select max(medicine_name),count(medicine_name) from medicine group by medicine_name order by count(medicine_name)desc limit 1;
+select bill_date,max(amount) from billing group by bill_date order by max(amount) desc;
+select d.doc_id,count(b.pat_id) as nopatientcount from doctors d full outer join appointments b on d.doc_id = b.doc_id group by d.doc_id having count(b.pat_id) < 1 order by doc_id;
+select d.dep_id,sum(b.amount) as total from doctors d inner join billing b on d.doc_id = b.doc_id group by d.dep_id;
+select pat_id,sum(medicineamount) as expenditure from appointments group by pat_id having sum(medicineamount) > 10000 order by sum(medicineamount) desc limit 1;
+select d.dep_id,sum(b.amount) as totalrevenue from billing b inner join doctors d on d.doc_id = b.doc_id group by d.dep_id having sum(b.amount) > 1000000;
+select d.dep_name,count(doc.doc_id) as doccount,round (avg(doc.salary)) as averagesalary,round (max(doc.salary)) as highestsalary,
+min(doc.salary) as lowsalary,sum(doc.salary) as totalsalary from department d left join doctors doc on d.dep_id = doc.dep_id 
+group by d.dep_name having count(doc.doc_id) > 2 and avg(doc.salary) > 100000 order by avg(doc.salary) desc;
